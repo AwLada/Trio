@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <algorithm>
+#include <functional>
 using namespace std;
 
 // <-- ADD YOUR FUNCTION PROTOTYPE HERE
@@ -33,29 +35,13 @@ int main()
 int trioValues (int& Red, int& Green, int& Blue)
 {
     int arr[] = {Red, Green, Blue};
-
-    int size = sizeof(arr)/sizeof(arr[0]);
-    qsort((void*)arr, size, sizeof(arr[0]), comparator);
-    Red = arr[2];
+    int n = sizeof(arr)/sizeof(arr[0]);
+    sort(arr, arr+n,greater<int>());
+    Red = arr[0];
     Green = arr[1];
-    Blue = arr[0];
+    Blue = arr[2];
 
 }
-int comparator(const void *p, const void *q)
-{
-int l = *(const int *)p;
-int r = *(const int *)q;
-
-if ((l&l) && (r&l))
-        return (r-1);
-
-if (!(l&l) && !(r&l))
-        return (l-r);
-
-if (!(l&l))
-        return l;
-
-return -l;
-}
 
 
+//Reference GeeksforGeeks.com
